@@ -42,7 +42,8 @@ public class Main {
     private static void guardarClavePrivada(PrivateKey privateKey) {
         PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(privateKey.getEncoded());
         try {
-            FileOutputStream fos = new FileOutputStream("C:\\Users\\2dam.TARTANGALH\\Desktop\\Software\\print\\private.key");
+            //FileOutputStream fos = new FileOutputStream("C:\\Users\\2dam.TARTANGALH\\Desktop\\Software\\print\\private.key");
+            FileOutputStream fos = new FileOutputStream("F:\\Clase 2DAM\\Cosas_print\\private.key");
             fos.write(spec.getEncoded());
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
@@ -55,7 +56,8 @@ public class Main {
     private static void guardarClavePublica(PublicKey publicKey) {
         PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(publicKey.getEncoded());
         try {
-            FileOutputStream fos = new FileOutputStream("C:\\Users\\2dam.TARTANGALH\\Desktop\\Software\\print\\public.key");
+            //FileOutputStream fos = new FileOutputStream("C:\\Users\\2dam.TARTANGALH\\Desktop\\Software\\print\\public.key");
+            FileOutputStream fos = new FileOutputStream("F:\\Clase 2DAM\\Cosas_print\\public.key");
             fos.write(spec.getEncoded());
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
