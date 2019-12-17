@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.security.InvalidKeyException;
 import java.security.KeyFactory;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
@@ -76,5 +77,29 @@ public class Encriptador {
         }
         return encriptado;
     }
-    
+    public String resumir(String mensaje) throws ResumirException{
+        MessageDigest messageDigest;
+        String resultado = null;
+        try {
+            messageDigest = MessageDigest.getInstance("SMD5");
+            byte dataBytes[] = mensaje.getBytes(); 
+            messageDigest.update(dataBytes);
+            byte resumen[] = messageDigest.digest();
+            resultado=resumen.toString();
+            
+        } catch (NoSuchAlgorithmException e) {
+            throw new ResumirException(e.getMessage());
+        }
+        return resultado;
+    }
+    static String Hexadecimal(byte[] resumen) {
+		String HEX = "";
+		for (int i = 0; i < resumen.length; i++) {
+			String h = Integer.toHexString(resumen[i] & 0xFF);
+			if (h.length() == 1)
+				HEX += "0";
+			HEX += h;
+		}
+		return HEX.toUpperCase();
+	}
 }
