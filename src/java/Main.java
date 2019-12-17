@@ -1,4 +1,7 @@
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
@@ -35,13 +38,29 @@ public class Main {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     private static void guardarClavePrivada(PrivateKey privateKey) {
-      PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(privateKey.getEncoded());
-      //FileOutPUT
+        PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(privateKey.getEncoded());
+        try {
+            FileOutputStream fos = new FileOutputStream("C:\\Users\\2dam.TARTANGALH\\Desktop\\Software\\print\\private.key");
+            fos.write(spec.getEncoded());
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
-
+    
     private static void guardarClavePublica(PublicKey publicKey) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(publicKey.getEncoded());
+        try {
+            FileOutputStream fos = new FileOutputStream("C:\\Users\\2dam.TARTANGALH\\Desktop\\Software\\print\\public.key");
+            fos.write(spec.getEncoded());
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
